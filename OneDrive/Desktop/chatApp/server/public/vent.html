@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Venting App – Main Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      background: #020617;
+      border-bottom: 1px solid #111827;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-size: 1.1rem;
+    }
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+    nav a:hover {
+      color: #e5e7eb;
+    }
+    nav a.primary-link {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: #111827;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.25rem;
+    }
+    .top-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .card {
+      background: #020617;
+      border-radius: 1rem;
+      padding: 1rem;
+      border: 1px solid #1f2937;
+      box-shadow: 0 18px 30px rgba(0,0,0,0.35);
+    }
+    .quote-card {
+      flex: 2;
+      min-width: 260px;
+    }
+    .quote-text {
+      font-style: italic;
+      margin-bottom: 0.3rem;
+    }
+    .quote-author {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+    .vent-card {
+      flex: 3;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .mood-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .mood-btn {
+      border-radius: 999px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .mood-btn.active {
+      background: linear-gradient(90deg,#6366f1,#06b6d4);
+      border-color: transparent;
+    }
+    .vent-btn {
+      margin-top: 0.5rem;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.9rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(90deg,#6366f1,#06b6d4);
+      color: #f9fafb;
+    }
+    .vent-btn:hover {
+      opacity: 0.97;
+    }
+
+    .voice-note {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .voice-note button {
+      border-radius: 999px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .section-title {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .feed {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .post-card {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.9rem;
+      border-radius: 0.9rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #22d3ee, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .post-body {
+      flex: 1;
+    }
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.25rem;
+    }
+    .username {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .meta {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+    .post-text {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+    .buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .pill-btn {
+      border-radius: 999px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .pill-btn:hover {
+      background: #111827;
+    }
+    .tag {
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      font-size: 0.75rem;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+      nav {
+        width: 100%;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Venting App</div>
+  <nav>
+    <!-- Link these to your actual pages later -->
+    <a href="main.html" class="primary-link">Home</a>
+    <a href="categories.html">Categories</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
+
+<main>
+  <div class="top-row">
+    <!-- Quote of the Day -->
+    <section class="card quote-card">
+      <h2 style="margin-top:0; font-size:0.95rem; color:#9ca3af;">Quote of the day</h2>
+      <p class="quote-text">“You’ve survived 100% of your worst days already.”</p>
+      <p class="quote-author">– Unknown</p>
+    </section>
+
+    <!-- Venting Area -->
+    <section class="card vent-card">
+      <h2 style="margin-top:0; font-size:0.95rem; color:#9ca3af;">How are you feeling?</h2>
+
+      <div class="mood-buttons">
+        <button class="mood-btn" data-mood="sad">Sad</button>
+        <button class="mood-btn" data-mood="angry">Angry</button>
+        <button class="mood-btn" data-mood="lost">Lost</button>
+        <button class="mood-btn" data-mood="numb">Numb</button>
+        <button class="mood-btn" data-mood="anxious">Anxious</button>
+      </div>
+
+      <button class="vent-btn" id="ventButton">
+        Vent Now
+      </button>
+
+      <div class="voice-note">
+        <span>Prefer talking?</span>
+        <button id="voiceBtn">Start voice vent</button>
+        <span style="font-size:0.75rem;">(placeholder – hook this to your recorder later)</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- Feed Section -->
+  <h2 class="section-title">Messages from other users (anonymous)</h2>
+
+  <section class="feed" id="feed">
+    <!-- Example post 1 -->
+    <article class="post-card">
+      <div class="avatar">BF</div>
+      <div class="post-body">
+        <div class="post-header">
+          <span class="username">BlueFox27</span>
+          <span class="meta">Mood: sad · Category: School/Work · 5 min ago</span>
+        </div>
+        <p class="post-text">
+          I feel completely overwhelmed with school right now and like I’m falling behind everyone else.
+        </p>
+        <div class="post-footer">
+          <div class="buttons">
+            <button class="pill-btn">❤️ Like</button>
+            <button class="pill-btn">💬 Reply</button>
+          </div>
+          <span class="tag">Just listen</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Example post 2 -->
+    <article class="post-card">
+      <div class="avatar">MG</div>
+      <div class="post-body">
+        <div class="post-header">
+          <span class="username">MintGlow</span>
+          <span class="meta">Mood: anxious · Category: Relationships · 20 min ago</span>
+        </div>
+        <p class="post-text">
+          I keep overthinking every conversation and it’s exhausting. I wish I could just relax around people.
+        </p>
+        <div class="post-footer">
+          <div class="buttons">
+            <button class="pill-btn">❤️ Like</button>
+            <button class="pill-btn">💬 Reply</button>
+          </div>
+          <span class="tag">Looking for advice</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Add more placeholder posts or inject from your backend -->
+  </section>
+</main>
+
+<script>
+  // Mood selection toggle
+  const moodButtons = document.querySelectorAll('.mood-btn');
+  let selectedMood = null;
+
+  moodButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      moodButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedMood = btn.dataset.mood;
+    });
+  });
+
+  // Vent button click (placeholder)
+  const ventButton = document.getElementById('ventButton');
+  ventButton.addEventListener('click', () => {
+    if (!selectedMood) {
+      alert('Choose a mood first, then we’ll open the vent screen.');
+      return;
+    }
+    // In a real app, you’d navigate to a "Create Post" page or open a modal.
+    alert('Open vent composer with mood: ' + selectedMood);
+  });
+
+  // Voice vent placeholder
+  document.getElementById('voiceBtn').addEventListener('click', () => {
+    alert('Here you would start recording audio for a voice vent.');
+  });
+</script>
+
+</body>
+</html>
