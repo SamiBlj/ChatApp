@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Montagne Fleurie - Fleuriste d'Exception à Compiègne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2D1810;
+            --secondary-color: #8B4513;
+            --accent-color: #D4AF37;
+            --soft-gold: #F4E4BC;
+            --cream: #FEFCF3;
+            --sage-green: #A8B5A0;
+            --dusty-rose: #D4B2A5;
+            --deep-green: #1B4332;
+            --white: #FFFFFF;
+            --text-dark: #2D1810;
+            --text-light: #6B7280;
+            --shadow-soft: 0 4px 20px rgba(45, 24, 16, 0.08);
+            --shadow-medium: 0 8px 32px rgba(45, 24, 16, 0.12);
+            --shadow-strong: 0 16px 48px rgba(45, 24, 16, 0.15);
+            --border-radius: 16px;
+            --border-radius-large: 24px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--cream) 0%, #F8F6F0 50%, var(--soft-gold) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .nav-container.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-medium);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo i {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 2rem 80px;
+            overflow: hidden;
+            background: linear-gradient(135deg,
+                rgba(244, 228, 188, 0.3) 0%,
+                rgba(254, 252, 243, 0.5) 50%,
+                rgba(212, 175, 55, 0.1) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(248, 246, 240, 0.6) 0%, transparent 70%);
+            animation: hero-float 20s ease-in-out infinite;
+        }
+
+        @keyframes hero-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta-button {
+            padding: 1.25rem 2.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: var(--white);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .cta-secondary {
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--accent-color);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .cta-secondary:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.6;
+            animation: float-random 15s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            font-size: 2rem;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 25%;
+            right: 15%;
+            font-size: 1.5rem;
+            animation-delay: 3s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            font-size: 1.8rem;
+            animation-delay: 6s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 30%;
+            right: 10%;
+            font-size: 1.3rem;
+            animation-delay: 9s;
+        }
+
+        @keyframes float-random {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-3deg);
+            }
+            75% {
+                transform: translateY(-25px) rotate(2deg);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 3rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Featured Products */
+        .featured-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--dusty-rose), var(--sage-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-conic-gradient(
+                from 0deg at 50% 50%,
+                rgba(255, 255, 255, 0.05) 0deg,
+                rgba(255, 255, 255, 0.05) 1deg,
+                transparent 1deg,
+                transparent 2deg
+            );
+            animation: rotate-slow 30s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .product-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .product-info p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-tag {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Services */
+        .services-section {
+            background: linear-gradient(135deg, rgba(248, 246, 240, 0.8), rgba(244, 228, 188, 0.6));
+            border-radius: var(--border-radius-large);
+            padding: 6rem 0;
+            margin: 6rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--white);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--white);
+            border-radius: var(--border-radius-large);
+            padding: 5rem;
+            box-shadow: var(--shadow-soft);
+            margin: 6rem 0;
+            position: relative;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(139, 69, 19, 0.03));
+            border-radius: var(--border-radius-large);
+            z-index: -1;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .about-intro h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-intro p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .about-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(248, 246, 240, 0.5), rgba(244, 228, 188, 0.3));
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .about-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .about-item p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Reviews */
+        .reviews-section {
+            background: linear-gradient(135deg, rgba(254, 252, 243, 0.9), rgba(244, 228, 188, 0.7));
+            border-radius: var(--border-radius-large);
+            padding: 6rem 0;
+            margin: 6rem 0;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            border-left: 5px solid var(--accent-color);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+
+        .review-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        .review-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .review-stars {
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .review-highlight {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 69, 19, 0.05));
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--white);
+            border-radius: var(--border-radius-large);
+            padding: 6rem;
+            box-shadow: var(--shadow-soft);
+            margin: 6rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(248, 246, 240, 0.5), rgba(244, 228, 188, 0.3));
+            border-radius: var(--border-radius);
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-info h3 i {
+            color: var(--accent-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-details p {
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, rgba(244, 228, 188, 0.3), rgba(248, 246, 240, 0.5));
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: var(--white);
+            border: none;
+            padding: 1.25rem 3rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--deep-green));
+            color: var(--white);
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--soft-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+            transform: translateX(3px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 4rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 100px 1rem 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .featured-products {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-section {
+                padding: 3rem 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="#" class="logo">
+                <i class="fas fa-leaf"></i>
+                La Montagne Fleurie
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#products">Collections</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">Notre Histoire</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-elements">
+            <div class="floating-element">🌸</div>
+            <div class="floating-element">🌹</div>
+            <div class="floating-element">🪻</div>
+            <div class="floating-element">🌺</div>
+        </div>
+        <div class="hero-content">
+            <h1>Art Floral d'Exception</h1>
+            <p class="hero-subtitle">Depuis 1995, nous créons des arrangements floraux uniques qui racontent votre histoire et embellissent vos moments précieux.</p>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">30+</span>
+                    <span class="stat-label">Années d'Expérience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15K+</span>
+                    <span class="stat-label">Clients Satisfaits</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Événements Réussis</span>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#products" class="cta-button cta-primary">
+                    <i class="fas fa-eye"></i>
+                    Découvrir nos Collections
+                </a>
+                <a href="#contact" class="cta-button cta-secondary">
+                    <i class="fas fa-calendar-alt"></i>
+                    Réserver une Consultation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="container">
+        <div class="section-header">
+            <h2>Collections Exclusives</h2>
+            <p class="section-subtitle">Découvrez nos arrangements signature, créés avec passion et raffinement pour sublimer vos espaces</p>
+        </div>
+        <div class="featured-products">
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    🌹
+                </div>
+                <div class="product-info">
+                    <h3>Rose Passion</h3>
+                    <p>Un bouquet élégant de roses rouges veloutées, symbole d'amour éternel et de sophistication.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Premium</span>
+                        <span class="feature-tag">Longue Durée</span>
+                    </div>
+                    <span class="price">À partir de 65€</span>
+                    <button class="add-to-cart">Commander Maintenant</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    🌸
+                </div>
+                <div class="product-info">
+                    <h3>Symphonie Printanière</h3>
+                    <p>Une explosion de couleurs et de fraîcheur avec les plus belles fleurs de saison.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Saisonnier</span>
+                        <span class="feature-tag">Coloré</span>
+                    </div>
+                    <span class="price">À partir de 75€</span>
+                    <button class="add-to-cart">Commander Maintenant</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    🪻
+                </div>
+                <div class="product-info">
+                    <h3>Orchidée d'Exception</h3>
+                    <p>Arrangement exotique et raffiné, parfaite pour les amateurs d'élégance minimaliste.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Exotique</span>
+                        <span class="feature-tag">Élégant</span>
+                    </div>
+                    <span class="price">À partir de 85€</span>
+                    <button class="add-to-cart">Commander Maintenant</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos Services d'Exception</h2>
+                <p class="section-subtitle">Un accompagnement personnalisé pour tous vos besoins floraux</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Livraison Premium</h3>
+                    <p>Livraison gratuite et express à Compiègne. Vos fleurs arrivent fraîches et parfaitement présentées, dans les délais convenus.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Créations Sur-Mesure</h3>
+                    <p>Nos fleuristes experts créent des arrangements uniques adaptés à votre style, votre budget et l'occasion spéciale.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-redo"></i>
+                    </div>
+                    <h3>Abonnement Floral</h3>
+                    <p>Recevez des fleurs fraîches chaque semaine ou chaque mois. Un service pratique pour embellir durablement votre quotidien.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Conseil Personnalisé</h3>
+                    <p>Bénéficiez de l'expertise de nos fleuristes pour choisir les fleurs parfaites selon vos goûts et votre intérieur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <div class="about-section">
+            <div class="about-content">
+                <div class="about-intro">
+                    <h3>L'Art de la Fleur Depuis 1995</h3>
+                    <p>La Montagne Fleurie n'est pas seulement une boutique, c'est une histoire d'amour pour les fleurs et l'art de les arranger. Depuis plus de trois décennies, nous transformons les émotions en compositions florales exceptionnelles.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-item">
+                        <h4>Notre Passion</h4>
+                        <p>Chaque fleur est sélectionnée avec soin auprès de producteurs locaux et durables. Nous privilégions la qualité et la fraîcheur pour garantir des arrangements qui durent dans le temps.</p>
+                    </div>
+                    <div class="about-item">
+                        <h4>Notre Expertise</h4>
+                        <p>Notre équipe de fleuristes passionnés maîtrise l'art des compositions florales. De la couleur à la symbolique, chaque détail est pensé pour créer des œuvres uniques.</p>
+                    </div>
+                    <div class="about-item">
+                        <h4>Notre Engagement</h4>
+                        <p>Nous nous engageons à offrir un service personnalisé et de qualité. Votre satisfaction est notre priorité, et nous mettons tout en œuvre pour dépasser vos attentes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Témoignages d'Exception</h2>
+                <p class="section-subtitle">Découvrez ce que nos clients privilégiés disent de notre travail</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card fade-in">
+                    <div class="review-header">
+                        <div class="review-avatar">M</div>
+                        <div class="review-info">
+                            <h4>Marie Dubois</h4>
+                            <span class="review-date">Mars 2026</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Un service d'une qualité exceptionnelle. Les fleurs étaient magnifiques et ont tenu plus longtemps que prévu. L'équipe est d'une gentillesse et d'une compétence remarquable."</p>
+                    <div class="review-highlight">
+                        <strong>★★★★★ Recommandé pour les occasions spéciales</strong>
+                    </div>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="review-header">
+                        <div class="review-avatar">J</div>
+                        <div class="review-info">
+                            <h4>Jean-Pierre Martin</h4>
+                            <span class="review-date">Février 2026</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Ils ont créé exactement ce que je voulais pour l'anniversaire de mariage de mes parents. L'attention aux détails et la créativité sont impressionnantes."</p>
+                    <div class="review-highlight">
+                        <strong>★★★★★ Service personnalisé exceptionnel</strong>
+                    </div>
+                </div>
+                <div class="review-card fade-in">
+                    <div class="review-header">
+                        <div class="review-avatar">S</div>
+                        <div class="review-info">
+                            <h4>Sophie Bernard</h4>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="review-text">"Belle sélection de fleurs et prix très raisonnables. Je recommande vivement pour tous vos besoins floraux. L'équipe est toujours de bon conseil."</p>
+                    <div class="review-highlight">
+                        <strong>★★★★½ Rapport qualité-prix excellent</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container">
+        <div class="contact-section">
+            <div class="section-header">
+                <h2>Entrez en Contact</h2>
+                <p class="section-subtitle">Nous sommes impatients de créer quelque chose de magnifique pour vous</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3><i class="fas fa-map-marker-alt"></i> Notre Boutique</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Adresse</h4>
+                            <p>45 Rue Carnot<br>60200 Compiègne, France</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Horaires d'Ouverture</h4>
+                            <p>Lundi - Samedi: 9h00 - 19h00<br>Dimanche: 10h00 - 17h00</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Téléphone</h4>
+                            <p>+33 3 44 20 16 44</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>contact@lamontagneleurie.fr</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envoyez-nous un Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Votre Nom</label>
+                            <input type="text" id="name" name="name" placeholder="Marie Dubois" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Votre Email</label>
+                            <input type="email" id="email" name="email" placeholder="marie@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone (optionnel)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+33 6 12 34 56 78">
+                        </div>
+                        <div class="form-group">
+                            <label for="occasion">Occasion</label>
+                            <select id="occasion" name="occasion">
+                                <option value="">Sélectionnez une occasion</option>
+                                <option value="anniversaire">Anniversaire</option>
+                                <option value="mariage">Mariage</option>
+                                <option value="naissance">Naissance</option>
+                                <option value="condoleances">Condoléances</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Votre Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Décrivez-nous votre projet floral..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Envoyer ma Demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>La Montagne Fleurie</h3>
+                    <p>Depuis 1995, votre fleuriste de référence à Compiègne. Nous créons des arrangements floraux d'exception qui racontent votre histoire et embellissent vos moments les plus précieux.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" aria-label="Suivez-nous sur Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram" aria-label="Suivez-nous sur Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Pinterest" aria-label="Suivez-nous sur Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Nos Services</h3>
+                    <ul>
+                        <li><a href="#services">Livraison Premium</a></li>
+                        <li><a href="#services">Créations Sur-Mesure</a></li>
+                        <li><a href="#services">Abonnements Floraux</a></li>
+                        <li><a href="#services">Conseil Personnalisé</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="#about">Notre Histoire</a></li>
+                        <li><a href="#products">Nos Collections</a></li>
+                        <li><a href="#contact">Contact & Horaires</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 La Montagne Fleurie. Tous droits réservés. | Créé avec <i class="fas fa-heart" style="color: var(--accent-color);"></i> pour l'art floral | Site web réalisé avec passion</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced JavaScript for professional interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling with offset for fixed nav
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const navHeight = document.querySelector('.nav-container').offsetHeight;
+                        const targetPosition = target.offsetTop - navHeight - 20;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('.nav-container');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Enhanced add to cart functionality
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.textContent;
+                    this.innerHTML = '<i class="fas fa-check"></i> Ajouté au Panier';
+                    this.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                    this.disabled = true;
+
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.background = '';
+                        this.disabled = false;
+                    }, 3000);
+                });
+            });
+
+            // Enhanced form submission
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+                submitBtn.disabled = true;
+
+                // Simulate form submission
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Envoyé !';
+                    submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                        this.reset();
+                    }, 3000);
+                }, 2000);
+            });
+
+            // Mobile menu toggle (enhanced)
+            document.querySelector('.menu-toggle').addEventListener('click', function() {
+                // For now, show a professional message
+                const menu = document.createElement('div');
+                menu.innerHTML = `
+                    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center;">
+                        <div style="background: white; padding: 2rem; border-radius: 16px; text-align: center; max-width: 300px;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Menu Mobile</h3>
+                            <p style="margin-bottom: 1.5rem;">Navigation mobile en développement</p>
+                            <button onclick="this.parentElement.parentElement.remove()" style="background: var(--accent-color); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">Fermer</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(menu);
+            });
+
+            // Add loading animation to body
+            document.body.classList.add('loading');
+
+            // Parallax effect for floating elements
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+
+                document.querySelectorAll('.floating-element').forEach((element, index) => {
+                    const speed = (index + 1) * 0.1;
+                    element.style.transform = `translateY(${rate * speed}px)`;
+                });
+            });
+
+            // Enhanced hover effects for product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+
+        // Performance optimization: Lazy load images (placeholder for future image implementation)
+        // This would be used when actual images are added
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+    </script>
+</body>
+</html>
